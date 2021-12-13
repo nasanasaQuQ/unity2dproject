@@ -10,9 +10,9 @@ public abstract class Enemy : MonoBehaviour
 
     public float flashTime;
 
-    public SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
-    public Color originColor;
+    private Color originColor;
     // Start is called before the first frame update
     public void Start()
     {
