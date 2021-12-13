@@ -40,6 +40,7 @@ public abstract class Enemy : MonoBehaviour
         health -= damage;
         FlashColor(flashTime);
         Instantiate(bloodEffect, transform.position, Quaternion.identity);
+        GameController.MyCameraShake.Shake();
     }
     
     // 受伤闪烁功能
