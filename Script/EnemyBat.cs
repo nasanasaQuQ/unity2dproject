@@ -15,7 +15,7 @@ public class EnemyBat : Enemy
     public Transform leftDownPos;
     public Transform rightUpPos;
     // Start is called before the first frame update
-    public void Start()
+    public new void Start()
     {
         base.Start();
         waitTime = startWaitTime;
@@ -23,7 +23,7 @@ public class EnemyBat : Enemy
     }
 
     // Update is called once per frame
-    public void Update()
+    public new void Update()
     {
         base.Update();
         transform.position = Vector2.MoveTowards(transform.position, movePos.position, moveSpeed*Time.deltaTime);

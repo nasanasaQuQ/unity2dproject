@@ -241,6 +241,7 @@ MonoBehaviour:
   damage: 1
   health: 5
   flashTime: 0.2
+  bloodEffect: {fileID: 5628671472403782950, guid: aaea444a720197d44ad3354d20671bfd, type: 3}
   moveSpeed: 2
   startWaitTime: 0.2
   movePos: {fileID: 1874041406966842042}
