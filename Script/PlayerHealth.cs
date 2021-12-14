@@ -9,10 +9,13 @@ public class PlayerHealth : MonoBehaviour
     public int blinks;
     public float time;
     private Renderer _renderer;
+
+    private Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
         _renderer = GetComponent<Renderer>();
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -25,8 +28,9 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         if (health <= 0)
-        {
-            Destroy(gameObject);
+        {   
+            _animator.SetTrigger("Die");
+            Destroy(gameObject,2f);
         }
         BlinkPlayer(blinks,time);
     }
