@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,12 @@ public abstract class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public GameObject bloodEffect;
     private Color originColor;
+
+    private PlayerHealth _playerHealth;
     // Start is called before the first frame update
     public void Start()
     {
+        _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originColor = spriteRenderer.color;
     }
@@ -54,5 +58,15 @@ public abstract class Enemy : MonoBehaviour
     {
         spriteRenderer.color = originColor;
     }
-    
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player") && other.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
+        {
+            if (_playerHealth)
+            {
+                _playerHealth.DamagePlayer(damage);
+            }
+        }
+    }
 }

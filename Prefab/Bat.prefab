@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e65f6dc1abe344c8d7aec0a1f1f49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   health: 5
   flashTime: 0.2
   bloodEffect: {fileID: 5628671472403782950, guid: aaea444a720197d44ad3354d20671bfd, type: 3}
