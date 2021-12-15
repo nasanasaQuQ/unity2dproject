@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HealthBar.HealthMax = health;
+        HealthBar.HealthCurrent = health;
         _renderer = GetComponent<Renderer>();
         _animator = GetComponent<Animator>();
     }
@@ -27,10 +29,15 @@ public class PlayerHealth : MonoBehaviour
     public void DamagePlayer(int damage)
     {
         health -= damage;
+        HealthBar.HealthCurrent = health;
+        if (health < 0)
+        {
+            health = 0;
+        }
         if (health <= 0)
         {   
             _animator.SetTrigger("Die");
-            Destroy(gameObject,2f);
+            Destroy(gameObject,1.5f);
         }
         BlinkPlayer(blinks,time);
     }
