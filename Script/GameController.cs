@@ -6,5 +6,6 @@ public class GameController : MonoBehaviour
 {
     public static CameraShake MyCameraShake;
     // Start is called before the first frame update
+    public static bool IsGamerAlive = true;
 
 }

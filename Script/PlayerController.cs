@@ -24,11 +24,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Run();
-        Filp();
-        Jump();
-        CheckIsGround();
-        SwitchAnimation();
+        if (GameController.IsGamerAlive)
+        {
+            Run();
+            Filp();
+            Jump();
+            CheckIsGround();
+            SwitchAnimation();
+        }
     }
     
     

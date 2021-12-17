@@ -22,7 +22,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _healthBar.fillAmount = (float)HealthCurrent / HealthMax;
+        _healthBar.fillAmount = (float)HealthCurrent / (float)HealthMax;
         healthText.text = HealthCurrent.ToString() + "/" + HealthMax.ToString();
     }
 }
