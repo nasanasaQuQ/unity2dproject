@@ -14,6 +14,7 @@ public abstract class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public GameObject bloodEffect;
     private Color originColor;
+    public GameObject dropCoin;
 
     private PlayerHealth _playerHealth;
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
+            Instantiate(dropCoin, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
