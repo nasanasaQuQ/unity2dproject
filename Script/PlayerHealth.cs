@@ -8,10 +8,11 @@ public class PlayerHealth : MonoBehaviour
     public int health;
     public int blinks;
     public float time;
+    public float hitBoxCdTime;
     private Renderer _renderer;
     private ScreenFlash _screenFlash;
     private Animator _animator;
-
+    private PolygonCollider2D _polygonCollider2D;
     private Rigidbody2D _rigidbody2D;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
         _animator = GetComponent<Animator>();
         _screenFlash = GetComponent<ScreenFlash>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _polygonCollider2D = GetComponent<PolygonCollider2D>();
     }
 
     // Update is called once per frame
@@ -53,6 +55,14 @@ public class PlayerHealth : MonoBehaviour
             GameController.IsGamerAlive = false;
         }
         BlinkPlayer(blinks,time);
+        _polygonCollider2D.enabled = false;
+        StartCoroutine(ShowPlayerHixBox());
+    }
+
+    IEnumerator ShowPlayerHixBox()
+    {
+        yield return new WaitForSeconds(hitBoxCdTime);
+        _polygonCollider2D.enabled = true;
     }
 
     void BlinkPlayer(int numBlinks, float seconds)
