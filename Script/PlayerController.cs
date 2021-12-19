@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private BoxCollider2D _boxCollider2D;
     private Animator _animator;
+    private bool _isOneWayPlatform;
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
             Jump();
             CheckIsGround();
             SwitchAnimation();
+            OneWayPlatformCheck();
         }
     }
     
@@ -59,7 +61,9 @@ public class PlayerController : MonoBehaviour
     private void CheckIsGround()
     {
         _isGround = _boxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")) || 
-                    _boxCollider2D.IsTouchingLayers(LayerMask.GetMask("MovingPlatform"));
+                    _boxCollider2D.IsTouchingLayers(LayerMask.GetMask("MovingPlatform"))||
+                    _boxCollider2D.IsTouchingLayers(LayerMask.GetMask("OneWayPlatform"));
+        _isOneWayPlatform = _boxCollider2D.IsTouchingLayers(LayerMask.GetMask("OneWayPlatform"));
     }
     
     // 跳跃 - > 二段跳
@@ -135,8 +139,28 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    
 
+    private void OneWayPlatformCheck()
+    {
+        //if (_isGround && gameObject.layer != )
+        var moveY = Input.GetAxis("Vertical");
+
+        if (_isOneWayPlatform && moveY < -0.1f)
+        {
+            gameObject.layer = LayerMask.NameToLayer("OneWayPlatform");
+            Invoke("ResetPlayerLayer",0.5f);
+        }
+    }
+
+    private void ResetPlayerLayer()
+    {
+        if (!_isOneWayPlatform && gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+
+        }
+    }
+    
     
     
 }
