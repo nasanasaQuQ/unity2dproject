@@ -58,7 +58,8 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIsGround()
     {
-        _isGround = _boxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        _isGround = _boxCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")) || 
+                    _boxCollider2D.IsTouchingLayers(LayerMask.GetMask("MovingPlatform"));
     }
     
     // 跳跃 - > 二段跳
