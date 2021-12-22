@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public abstract class Enemy : MonoBehaviour
     public GameObject bloodEffect;
     private Color originColor;
     public GameObject dropCoin;
+    public GameObject floatPoint;
 
     private PlayerHealth _playerHealth;
     // Start is called before the first frame update
@@ -42,7 +44,10 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    {
+    {   
+        
+        GameObject obj = Instantiate(floatPoint, transform.position, Quaternion.identity) as GameObject;
+        obj.transform.GetChild(0).GetComponent<TextMesh>().text = damage.ToString();
         health -= damage;
         FlashColor(flashTime);
         Instantiate(bloodEffect, transform.position, Quaternion.identity);
