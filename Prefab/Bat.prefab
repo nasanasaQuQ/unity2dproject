@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1874041408614452380}
   - component: {fileID: 1874041408614452376}
   - component: {fileID: 1874041408614452383}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: EnemyBat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
