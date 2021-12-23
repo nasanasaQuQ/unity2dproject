@@ -23,6 +23,7 @@ public class CoinItem : MonoBehaviour
             other.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {   
             // 目前先做成+1
+            SoundsMannager.PlayPickCoinClip();
             Coin.NowCoinNum += 1;
             Destroy(gameObject);
         }
