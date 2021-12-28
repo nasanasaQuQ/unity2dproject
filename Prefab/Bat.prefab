@@ -246,6 +246,7 @@ MonoBehaviour:
   dropCoin: {fileID: 2085283106020614461, guid: 60c055b0059b6674596115afff67cb7f, type: 3}
   floatPoint: {fileID: 5383977190359818576, guid: 76e0f9d28414f0543838ff3bb69f337a, type: 3}
   moveSpeed: 2
+  radius: 15
   startWaitTime: 0.2
   movePos: {fileID: 1874041406966842042}
   leftDownPos: {fileID: 1874041408023759803}

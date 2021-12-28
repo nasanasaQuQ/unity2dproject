@@ -6,11 +6,12 @@ public class EnemyBat : Enemy
 {
 
     public float moveSpeed;
-
+    public float radius;
     public float startWaitTime;
 
     private float waitTime;
 
+    private Transform playerTransform;
     public Transform movePos;
     public Transform leftDownPos;
     public Transform rightUpPos;
@@ -20,6 +21,7 @@ public class EnemyBat : Enemy
         base.Start();
         waitTime = startWaitTime;
         movePos.position = GetRandomPos();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,16 @@ public class EnemyBat : Enemy
         base.Update();
         transform.position = Vector2.MoveTowards(transform.position, movePos.position, moveSpeed*Time.deltaTime);
         // 判断是否到达了生成的位置
+        if (playerTransform)
+        {
+            float distance = (transform.position - playerTransform.position).sqrMagnitude;
+            // 如果小于检测半径
+            if (distance < radius)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position,
+                    moveSpeed * Time.deltaTime);
+            }
+        }
         if (Vector2.Distance(transform.position, movePos.position) < 0.1f)
         {
             if (waitTime <= 0)
